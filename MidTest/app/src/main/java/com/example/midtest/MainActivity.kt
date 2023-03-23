@@ -64,20 +64,12 @@ class MainActivity : AppCompatActivity() {
 
                     }else
                         if(email.matches(regex)) {
-                            rs = db.rawQuery("SELECT * FROM DANGKY WHERE email = '$email'", null)
+                            rs = db.rawQuery("SELECT * FROM TEST WHERE email = '$email'", null)
                             if (rs.getCount() > 0) {
-                                Toast.makeText(this, "Email da ton tai", Toast.LENGTH_SHORT).show()
-                            } else {
-                                db.insert("DANGKY", null, cv)
-                                Toast.makeText(this, "đăng ký thành công", Toast.LENGTH_SHORT)
-                                    .show()
-
-                                binding.email.setText("")
-                                binding.username.setText("")
-                                binding.password.setText("")
-                                binding.cfpassword.setText("")
+                                Toast.makeText(this, "Email đã tồn tại", Toast.LENGTH_SHORT).show()
                             }
                         }
+
 
 
 
@@ -86,7 +78,15 @@ class MainActivity : AppCompatActivity() {
             rs.requery()
             adapter.notifyDataSetChanged()
 
+            var ad = AlertDialog.Builder(this)
+            ad.setTitle("Đăng Ký")
+            ad.setMessage("Đăng Ký thành công")
+            ad.setPositiveButton("OK",DialogInterface.OnClickListener { dialogInterface, i ->
 
+            })
+            ad.show()
+
+        }
 
 
 
@@ -95,4 +95,3 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-}
